@@ -34,7 +34,7 @@
 				stroke: #005AA1;
 				stroke-miterlimit: 10;
 			}
-			.red {
+			.cls-1.red:focus {
 				fill: #005AA1;
 				stroke: #000;
 			}
@@ -314,6 +314,28 @@
 				}
 			});
 
+			// --- EVENT 5: When a district is focused ---
+			district.addEventListener('focus', () => {
+				// Get the second class name (e.g., "viana_do_castelo")
+				const districtClassName = district.classList[1];
+				// Replace underscores with spaces and update the text
+				districtNameDisplayP.textContent = districtClassName.replace(/_/g, ' ');
+				// add a class to .district_name_display p
+				districtNameDisplayP.classList.add('hovered');
+				// add class to the district
+				district.classList.add('red');
+			});
+
+			// --- EVENT 6: When a district loses focus ---
+			// --- EVENT 6: When a district loses focus ---
+			district.addEventListener('blur', () => {
+				// Restore the original "Hover over..." text
+				districtNameDisplayP.textContent = originalText;
+				// remove the class from .district_name_display p
+				districtNameDisplayP.classList.remove('hovered');
+				// remove class from the district
+				district.classList.remove('red');
+			});
 		});
 
 	</script>
